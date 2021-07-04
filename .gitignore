@@ -1,3 +1,5 @@
 earthquake_data/dbCredentials.py
 *shrubEnv
 */__pycache__
+LambdaDeploymentPack/
+.DS_Store
