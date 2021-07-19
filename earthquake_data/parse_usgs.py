@@ -19,7 +19,7 @@ def updateDB(event=None, context=None):
     connectionObject = pymysql.connect(host=endpoint, user=username, passwd=password, db=database_name)
 
     fetchCursor = connectionObject.cursor()
-    fetchCursor.execute("SELECT id FROM Earthquakes")
+    fetchCursor.execute("SELECT usgsID FROM Earthquakes")
     idColumn = fetchCursor.fetchall()
 
     usgsIds=set()
@@ -42,7 +42,7 @@ def updateDB(event=None, context=None):
 
         # parse relevant properties
             print("~~~~~~~~~~~~~~~~~~~~~~~")
-            id = item["id"]
+            usgsID = item["id"]
             print(id)
             place = item["properties"]["place"]
             print(place)
@@ -52,12 +52,13 @@ def updateDB(event=None, context=None):
             print(longitude)
             latitude = item["geometry"]["coordinates"][1]
             print(latitude)
+            time = item["properties"]["time"]
 
         # update DB
 
             insertCursor = connectionObject.cursor()
-            insertStatement = "INSERT INTO Earthquakes (id,place,mag,longitude,latitude) VALUES (%s,%s,%s,%s,%s)"
-            insertCursor.execute(insertStatement,(id,place,magnitude,longitude,latitude))
+            insertStatement = "INSERT INTO Earthquakes (usgsID,place,mag,longitude,latitude,time) VALUES (%s,%s,%s,%s,%s,%s)"
+            insertCursor.execute(insertStatement,(usgsID,place,magnitude,longitude,latitude,time))
             connectionObject.commit()
 
 
