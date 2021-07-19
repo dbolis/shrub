@@ -34,12 +34,12 @@ def updateDB(event=None, context=None):
     earthquakes = geo_json['features']
 
     # Parse and update DB
-
+    
     for item in earthquakes:
 
         # check if item exists in table
         if item["id"] not in usgsIds:
-
+        
         # parse relevant properties
             print("~~~~~~~~~~~~~~~~~~~~~~~")
             usgsID = item["id"]
@@ -53,6 +53,7 @@ def updateDB(event=None, context=None):
             latitude = item["geometry"]["coordinates"][1]
             print(latitude)
             time = item["properties"]["time"]
+            print(time)
 
         # update DB
 
@@ -60,5 +61,4 @@ def updateDB(event=None, context=None):
             insertStatement = "INSERT INTO Earthquakes (usgsID,place,mag,longitude,latitude,time) VALUES (%s,%s,%s,%s,%s,%s)"
             insertCursor.execute(insertStatement,(usgsID,place,magnitude,longitude,latitude,time))
             connectionObject.commit()
-
 
