@@ -29,7 +29,9 @@ def in_radius(long1, lat1, long2, lat2, radius):
     # print("-----------")
     # print(distance)
 
+
+    print("IN RADIUS")
     return distance<=radius
 
 
-print(in_radius(-74.0447375,40.6892686,-73.9855601,40.7483282,10000))
+

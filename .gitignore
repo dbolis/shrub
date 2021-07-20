@@ -3,3 +3,5 @@ earthquake_data/dbCredentials.py
 */__pycache__
 LambdaDeploymentPack/
 .DS_Store
+APILambdaDeploymentPack/
+earthquake_data/lambda_function.py
